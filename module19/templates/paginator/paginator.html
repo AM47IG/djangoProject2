@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static "css/styles.css" %}" />
+    <title>Paginator</title>
+</head>
+<body>
+    <div class="row">
+      {% for post in page_obj %}
+        <div>
+          <h2>{{ post.title }}</h2>
+          <p>{{ post.content }}</p>
+          <p>{{ post.created_at }}</p>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1&el_on_page={{ el_on_page }}">&laquo; Начало</a>
+                <a href="?page={{ page_obj.previous_page_number }}&el_on_page={{ el_on_page }}">Назад</a>
+            {% endif %}
+
+            <span class="current">
+                Стр. {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}&el_on_page={{ el_on_page }}">Вперед</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}&el_on_page={{ el_on_page }}">Конец &raquo;</a>
+            {% endif %}
+        </span>
+        <form method="get">
+            <select hidden name="page"><option selected value="{{ page_obj.number }}"></option></select>
+            <select name="el_on_page">
+                <option selected disabled>Кол-во элементов на странице</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+            </select>
+            <input type="submit" value="Применить"></input>
+        </form>
+    </div>
+</body>
+</html>
