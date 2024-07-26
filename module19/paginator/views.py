@@ -6,8 +6,7 @@ from .models import *
 # Create your views here.
 def paginator(request):
     posts = Post.objects.all().order_by('-created_at')
-    el_on_page = request.GET.get('el_on_page')
-    el_on_page = el_on_page if el_on_page else 3
+    el_on_page = request.GET.get('el_on_page', 3)
     paginator = Paginator(posts, per_page=el_on_page, orphans=2)
     page = request.GET.get('page')
     try:
