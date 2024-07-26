@@ -8,4 +8,5 @@ urlpatterns = [
     path('platform/games/', games),
     path('platform/cart/', TemplateView.as_view(template_name='fourth_task/cart.html')),
     path('', sign_up_by_django),
+    path('api/gamelist/', GameAPIView.as_view())
 ]

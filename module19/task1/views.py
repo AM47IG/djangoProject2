@@ -1,10 +1,17 @@
 from django.shortcuts import render
+from rest_framework import generics
 from django.http import HttpResponse
 from .forms import UserRegister
 from .models import Buyer, Game
+from .serializers import GameSerializer
 
 
 # Create your views here.
+class GameAPIView(generics.ListAPIView):
+    queryset = Game.objects.all()
+    serializer_class = GameSerializer
+
+
 def games(request):
     list_games = Game.objects.all()
     context = {'games': list_games}

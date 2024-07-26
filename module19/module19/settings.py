@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'task1.apps.Task1Config',
     'paginator.apps.PaginatorConfig',
 ]
@@ -76,9 +77,13 @@ WSGI_APPLICATION = 'module19.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "Django",
+        "USER": "postgres",
+        "PASSWORD": "iam47ZigZag83",
+        "HOST": "localhost",
+        "PORT": "",
     }
 }
 
